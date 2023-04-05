@@ -87,7 +87,7 @@ async def ref(message: types.Message):
         await bot.send_photo(message.chat.id, photo=open(f'func.jpg', 'rb'), caption=f"👁<b>Данные о странице:</b>\n\n<b>ВК ID:</b> {decod['vkId']}\n<b>Имя:</b> {decod['firstName']}\n<b>Фамилия:</b> {decod['lastName']}\n\nВыберите действие:", reply_markup=keyboard, parse_mode='html')
         pass
     else:
-        await bot.send_message(message.chat.id, f"Ссылка неверного формата!\nПример ссылки: vk.com/durov")
+        await bot.send_message(message.chat.id, f"Ссылка неверного формата!\nПример ссылки: vk.com/durov") #Этот проект я сделал не для того что бы делать плохо людям, так как моя любовь Аня это осуждает! не смей перечить её мнению
         pass
 
 @dp.callback_query_handler(text="vzlom")
